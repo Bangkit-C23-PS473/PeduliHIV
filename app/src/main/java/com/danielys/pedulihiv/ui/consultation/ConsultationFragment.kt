@@ -1,4 +1,4 @@
-package com.danielys.pedulihiv.ui.notifications
+package com.danielys.pedulihiv.ui.consultation
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,11 +7,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.danielys.pedulihiv.databinding.FragmentNotificationsBinding
+import com.danielys.pedulihiv.databinding.FragmentConsultationBinding
 
-class NotificationsFragment : Fragment() {
+class ConsultationFragment : Fragment() {
 
-private var _binding: FragmentNotificationsBinding? = null
+private var _binding: FragmentConsultationBinding? = null
   // This property is only valid between onCreateView and
   // onDestroyView.
   private val binding get() = _binding!!
@@ -21,14 +21,14 @@ private var _binding: FragmentNotificationsBinding? = null
     container: ViewGroup?,
     savedInstanceState: Bundle?
   ): View {
-    val notificationsViewModel =
-            ViewModelProvider(this).get(NotificationsViewModel::class.java)
+    val dashboardViewModel =
+            ViewModelProvider(this).get(ConsultationViewModel::class.java)
 
-    _binding = FragmentNotificationsBinding.inflate(inflater, container, false)
+    _binding = FragmentConsultationBinding.inflate(inflater, container, false)
     val root: View = binding.root
 
-    val textView: TextView = binding.textNotifications
-    notificationsViewModel.text.observe(viewLifecycleOwner) {
+    val textView: TextView = binding.textView2
+    dashboardViewModel.text.observe(viewLifecycleOwner) {
       textView.text = it
     }
     return root

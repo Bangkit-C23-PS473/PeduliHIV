@@ -7,11 +7,11 @@
     tools:context=".ui.home.HomeFragment">
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="94dp"
-        android:text="ini home"
+        android:layout_marginTop="98dp"
+        android:text="Ini Akun"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

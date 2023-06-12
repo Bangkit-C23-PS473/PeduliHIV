@@ -8,18 +8,45 @@
     <fragment
         android:id="@+id/navigation_home"
         android:name="com.danielys.pedulihiv.ui.home.HomeFragment"
-        android:label="@string/title_home"
+        android:label="Home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.danielys.pedulihiv.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_consultation"
+        android:name="com.danielys.pedulihiv.ui.consultation.ConsultationFragment"
+        android:label="Consultation"
+        tools:layout="@layout/fragment_consultation" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.danielys.pedulihiv.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_community"
+        android:name="com.danielys.pedulihiv.ui.calendar.CommunityFragment"
+        android:label="Community"
+        tools:layout="@layout/fragment_community" />
+
+    <fragment
+        android:id="@+id/navigation_account"
+        android:name="com.danielys.pedulihiv.ui.calendar.AccountFragment"
+        android:label="AccountFragment"
+        tools:layout="@layout/fragment_community"/>
+
+    <fragment
+        android:id="@+id/navigation_calendar"
+        android:name="com.danielys.pedulihiv.ui.calendar.CalendarFragment"
+        android:label="CalendarFragment"
+        tools:layout="@layout/fragment_community"/>
+
+
+
+
+    <activity
+        android:id="@+id/loginActivity"
+        android:name="com.danielys.pedulihiv.ui.login.LoginActivity"
+        android:label="activity_login"
+        tools:layout="@layout/activity_login" />
+    <activity
+        android:id="@+id/registerActivity"
+        android:name="com.danielys.pedulihiv.ui.register.RegisterActivity"
+        android:label="activity_register"
+        tools:layout="@layout/activity_register" />
+
 </navigation>

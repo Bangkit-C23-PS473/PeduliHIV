@@ -1,8 +1,5 @@
 <resources>
     <string name="app_name">Peduli HIV</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
 
     <string name="login_email">Email Anda</string>
     <string name="login_password">Password Anda</string>

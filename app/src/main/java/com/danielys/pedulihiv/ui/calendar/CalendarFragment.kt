@@ -1,4 +1,4 @@
-package com.danielys.pedulihiv.ui.dashboard
+package com.danielys.pedulihiv.ui.calendar
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,11 +7,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.danielys.pedulihiv.databinding.FragmentDashboardBinding
+import com.danielys.pedulihiv.databinding.FragmentCalendarBinding
 
-class DashboardFragment : Fragment() {
+class CalendarFragment : Fragment() {
 
-private var _binding: FragmentDashboardBinding? = null
+private var _binding: FragmentCalendarBinding? = null
   // This property is only valid between onCreateView and
   // onDestroyView.
   private val binding get() = _binding!!
@@ -21,14 +21,14 @@ private var _binding: FragmentDashboardBinding? = null
     container: ViewGroup?,
     savedInstanceState: Bundle?
   ): View {
-    val dashboardViewModel =
-            ViewModelProvider(this).get(DashboardViewModel::class.java)
+    val communityViewModel =
+            ViewModelProvider(this).get(CalendarViewModel::class.java)
 
-    _binding = FragmentDashboardBinding.inflate(inflater, container, false)
+    _binding = FragmentCalendarBinding.inflate(inflater, container, false)
     val root: View = binding.root
 
-    val textView: TextView = binding.textDashboard
-    dashboardViewModel.text.observe(viewLifecycleOwner) {
+    val textView: TextView = binding.textView4
+    communityViewModel.text.observe(viewLifecycleOwner) {
       textView.text = it
     }
     return root
