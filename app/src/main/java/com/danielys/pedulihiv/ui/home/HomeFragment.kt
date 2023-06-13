@@ -27,10 +27,10 @@ private var _binding: FragmentHomeBinding? = null
     _binding = FragmentHomeBinding.inflate(inflater, container, false)
     val root: View = binding.root
 
-    val textView: TextView = binding.textView5
-    homeViewModel.text.observe(viewLifecycleOwner) {
-      textView.text = it
-    }
+//    val textView: TextView = binding.tvWelcome
+//    homeViewModel.text.observe(viewLifecycleOwner) {
+//      textView.text = it
+//    }
     return root
   }
 
