@@ -1,6 +1,7 @@
 package com.danielys.pedulihiv.ui.home
 
 import android.app.Dialog
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.danielys.pedulihiv.R
 import com.danielys.pedulihiv.databinding.FragmentHomeBinding
+import com.danielys.pedulihiv.ui.addpost.AddPostActivity
 
 class HomeFragment : Fragment() {
 
@@ -45,7 +47,8 @@ private var _binding: FragmentHomeBinding? = null
         val button = customDialog?.findViewById<Button>(R.id.btn_start_konsul)
 
         button?.setOnClickListener {
-
+            val intent = Intent(context,AddPostActivity::class.java)
+            startActivity(intent)
             customDialog.dismiss()
         }
     }

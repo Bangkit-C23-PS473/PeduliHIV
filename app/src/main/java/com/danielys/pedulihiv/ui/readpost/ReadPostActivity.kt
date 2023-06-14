@@ -1,4 +1,4 @@
-package com.danielys.pedulihiv.ui
+package com.danielys.pedulihiv.ui.readpost
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
