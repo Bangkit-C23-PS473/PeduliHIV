@@ -27,10 +27,7 @@ private var _binding: FragmentConsultationBinding? = null
     _binding = FragmentConsultationBinding.inflate(inflater, container, false)
     val root: View = binding.root
 
-    val textView: TextView = binding.textView2
-    dashboardViewModel.text.observe(viewLifecycleOwner) {
-      textView.text = it
-    }
+
     return root
   }
 
