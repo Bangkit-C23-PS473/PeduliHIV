@@ -37,9 +37,9 @@ class UserPreferences private constructor(private val dataStore: DataStore<Prefe
         }
     }
 
-    suspend fun setUsername(userid: String) {
+    suspend fun setUsername(username: String) {
         dataStore.edit { preferences ->
-            preferences[usernameKey] = userid
+            preferences[usernameKey] = username
         }
     }
 

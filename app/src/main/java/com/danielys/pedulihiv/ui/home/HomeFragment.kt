@@ -11,11 +11,18 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.danielys.pedulihiv.R
 import com.danielys.pedulihiv.data.Global
+import com.danielys.pedulihiv.data.response.DataItem
 import com.danielys.pedulihiv.databinding.FragmentHomeBinding
 import com.danielys.pedulihiv.ui.addpost.AddPostActivity
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class HomeFragment : Fragment() {
 
@@ -38,22 +45,35 @@ class HomeFragment : Fragment() {
 
 
 
-        homeViewModel.dataMotivation.observe(viewLifecycleOwner){motivationResponse->
-            if(motivationResponse.message == "Motivation retrieved"){
+        homeViewModel.dataMotivation.observe(viewLifecycleOwner) { motivationResponse ->
+            if (motivationResponse.message == "Motivation retrieved") {
                 val dataMotivation = motivationResponse.data
-                with(dataMotivation){
+                with(dataMotivation) {
                     Glide.with(requireContext())
                         .load(this?.photo)
                         .into(binding.ivMotivation)
                     binding.tvMotivation.text = this?.text
                 }
-                binding.tvWelcome.text = "Halo, ${Global.user.name}"
             }
         }
         homeViewModel.getMotivation()
 
+        CoroutineScope(Dispatchers.Main).launch {
+            delay(2000)
+            binding.tvWelcome.text = "Halo, ${Global.user.name}"
+            homeViewModel.getActivities(Global.user.username)
+        }
+
+        homeViewModel.dataActivities.observe(viewLifecycleOwner) { activitiesResponse ->
+            val listActivities = activitiesResponse.data
+            if (!listActivities.isNullOrEmpty()) {
+                setStoriesData(listActivities as List<DataItem>)
+            }
+
+        }
+
         binding.btnKonsul.setOnClickListener {
-            Toast.makeText(context, Global.user?.name.toString(), Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, Global.user?.username.toString(), Toast.LENGTH_SHORT).show()
             val customDialog = context?.let { it1 -> Dialog(it1) }
             customDialog?.setContentView(R.layout.dialog_consul)
 
@@ -72,6 +92,15 @@ class HomeFragment : Fragment() {
             }
         }
         return root
+    }
+
+    private fun setStoriesData(stories: List<DataItem>) {
+        val layoutManager = LinearLayoutManager(requireContext())
+        binding.rvActivities.layoutManager = layoutManager
+        val itemDecoration = DividerItemDecoration(requireContext(), layoutManager.orientation)
+        binding.rvActivities.addItemDecoration(itemDecoration)
+        val adapter = ActivitiesAdapter(stories, requireContext())
+        binding.rvActivities.adapter = adapter
     }
 
     override fun onDestroyView() {
