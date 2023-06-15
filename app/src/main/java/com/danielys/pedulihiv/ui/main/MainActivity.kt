@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
         )
 
         mainViewModel.getUsername().observe(this) { username ->
-            if (username != "") {
+            if (username != "" || intent.getBooleanExtra("login",false)) {
                 mainViewModel.setGlobal()
             }  else {
                 val intent = Intent(this, LoginActivity::class.java)
