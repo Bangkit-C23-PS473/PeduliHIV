@@ -41,7 +41,7 @@ class ActivitiesAdapter(private val listActivities: List<DataItem>, private val 
 
         viewHolder.binding.imgActivity.setImageDrawable(vector)
         viewHolder.binding.tvNameActivity.text = listActivities[position].name
-        viewHolder.binding.tvTime.text = listActivities[position].time
+        viewHolder.binding.tvTime.text = listActivities[position].time?.substring(0, 8 - 3)
 
         viewHolder.itemView.setOnClickListener {
             val customDialog = context?.let { it1 -> Dialog(it1) }
