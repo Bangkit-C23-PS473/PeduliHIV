@@ -12,6 +12,7 @@ import com.danielys.pedulihiv.data.UserPreferences
 import com.danielys.pedulihiv.databinding.ActivityLoginBinding
 import com.danielys.pedulihiv.ui.PrefViewModelProvider
 import com.danielys.pedulihiv.ui.main.MainActivity
+import com.danielys.pedulihiv.ui.register.RegisterActivity
 
 class LoginActivity : AppCompatActivity() {
 
@@ -52,6 +53,11 @@ class LoginActivity : AppCompatActivity() {
             with(binding) {
                 loginViewModel.login(etEmail.text.toString(), etPassword.text.toString())
             }
+        }
+
+        binding.tvHaventAccount.setOnClickListener {
+            val intent = Intent(this,RegisterActivity::class.java)
+            startActivity(intent)
         }
     }
 }
