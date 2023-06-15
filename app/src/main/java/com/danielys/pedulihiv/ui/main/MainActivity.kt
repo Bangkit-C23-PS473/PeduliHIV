@@ -13,9 +13,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.danielys.pedulihiv.R
-import com.danielys.pedulihiv.data.Global
 import com.danielys.pedulihiv.data.UserPreferences
 import com.danielys.pedulihiv.databinding.ActivityMainBinding
+import com.danielys.pedulihiv.ui.PrefViewModelProvider
 import com.danielys.pedulihiv.ui.calendar.AccountFragment
 import com.danielys.pedulihiv.ui.calendar.CalendarFragment
 import com.danielys.pedulihiv.ui.calendar.CommunityFragment
@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val pref = UserPreferences.getInstance(dataStore)
-        mainViewModel = ViewModelProvider(this, MainViewModelProvider(pref)).get(
+        mainViewModel = ViewModelProvider(this, PrefViewModelProvider(pref)).get(
             MainViewModel::class.java
         )
 

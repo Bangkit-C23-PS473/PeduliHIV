@@ -8,7 +8,7 @@ data class LoginResponse(
 data class User(
 	val password: String? = null,
 	val bodyHeight: Int? = null,
-	var profilePhoto: String? = null,
+	var profile_photo: String? = null,
 	val sex: String? = null,
 	var name: String? = null,
 	val bodyWeight: Int? = null,
