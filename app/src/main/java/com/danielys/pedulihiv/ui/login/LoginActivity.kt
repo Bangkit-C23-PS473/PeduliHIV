@@ -38,7 +38,7 @@ class LoginActivity : AppCompatActivity() {
                 loginViewModel.setGlobal(
                     loginData!!.username!!,
                     loginData.name!!,
-                    loginData.profile_photo!!
+                    loginData.profile_photo?:"default"
                 )
 
                 val intent = Intent(this, MainActivity::class.java)
