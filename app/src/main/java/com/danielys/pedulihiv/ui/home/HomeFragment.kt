@@ -11,51 +11,68 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.Glide
 import com.danielys.pedulihiv.R
+import com.danielys.pedulihiv.data.response.MotivationrResponse
 import com.danielys.pedulihiv.databinding.FragmentHomeBinding
 import com.danielys.pedulihiv.ui.addpost.AddPostActivity
 
 class HomeFragment : Fragment() {
 
-private var _binding: FragmentHomeBinding? = null
-  // This property is only valid between onCreateView and
-  // onDestroyView.
-  private val binding get() = _binding!!
+    private var _binding: FragmentHomeBinding? = null
 
-  override fun onCreateView(
-    inflater: LayoutInflater,
-    container: ViewGroup?,
-    savedInstanceState: Bundle?
-  ): View {
-    val homeViewModel =
+    // This property is only valid between onCreateView and
+    // onDestroyView.
+    private val binding get() = _binding!!
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        val homeViewModel =
             ViewModelProvider(this).get(HomeViewModel::class.java)
 
-    _binding = FragmentHomeBinding.inflate(inflater, container, false)
-    val root: View = binding.root
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        val root: View = binding.root
 
-    binding.btnKonsul.setOnClickListener {
-        Toast.makeText(context, "coba pencet", Toast.LENGTH_SHORT).show()
+        homeViewModel.dataMotivation.observe(viewLifecycleOwner){motivationResponse->
+            if(motivationResponse.message == "Motivation retrieved"){
+                val dataMotivation = motivationResponse.data
+                with(dataMotivation){
+                    Glide.with(requireContext())
+                        .load(this?.photo)
+                        .into(binding.ivMotivation)
+                    binding.tvMotivation.text = this?.text
+                }
 
-        val customDialog = context?.let { it1 -> Dialog(it1) }
-        customDialog?.setContentView(R.layout.dialog_consul)
-
-        customDialog?.show()
-
-        val weight = customDialog?.findViewById<TextView>(R.id.et_weight)
-        val height = customDialog?.findViewById<TextView>(R.id.et_height)
-        val age = customDialog?.findViewById<TextView>(R.id.et_age)
-        val button = customDialog?.findViewById<Button>(R.id.btn_start_konsul)
-
-        button?.setOnClickListener {
-            val intent = Intent(context,AddPostActivity::class.java)
-            startActivity(intent)
-            customDialog.dismiss()
+            }
         }
-    }
-    return root
-  }
+        homeViewModel.getMotivation()
 
-override fun onDestroyView() {
+        binding.btnKonsul.setOnClickListener {
+            Toast.makeText(context, "coba pencet", Toast.LENGTH_SHORT).show()
+
+            val customDialog = context?.let { it1 -> Dialog(it1) }
+            customDialog?.setContentView(R.layout.dialog_consul)
+
+            customDialog?.show()
+
+            val weight = customDialog?.findViewById<TextView>(R.id.et_weight)
+            val height = customDialog?.findViewById<TextView>(R.id.et_height)
+            val age = customDialog?.findViewById<TextView>(R.id.et_age)
+            val button = customDialog?.findViewById<Button>(R.id.btn_start_konsul)
+
+            button?.setOnClickListener {
+//                val intent = Intent(context, AddPostActivity::class.java)
+//                startActivity(intent)
+                customDialog.dismiss()
+            }
+        }
+        return root
+    }
+
+    override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }

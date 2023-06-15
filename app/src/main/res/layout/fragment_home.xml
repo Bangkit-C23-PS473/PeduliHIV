@@ -37,7 +37,8 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_welcome"
-            app:srcCompat="@drawable/ic_launcher_background" />
+            app:srcCompat="@drawable/ic_launcher_background"
+           />
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
@@ -75,6 +76,24 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_konsul"
             app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/tv_motivation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="TextView"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:shadowColor="@color/black"
+            android:shadowDx="1.5"
+            android:shadowDy="1.3"
+            android:shadowRadius="1.6"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_motivation"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/iv_motivation" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
