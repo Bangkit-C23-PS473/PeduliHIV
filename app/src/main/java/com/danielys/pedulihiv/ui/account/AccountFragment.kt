@@ -27,10 +27,6 @@ private var _binding: FragmentAccountBinding? = null
     _binding = FragmentAccountBinding.inflate(inflater, container, false)
     val root: View = binding.root
 
-    val textView: TextView = binding.textView
-    communityViewModel.text.observe(viewLifecycleOwner) {
-      textView.text = it
-    }
     return root
   }
 
