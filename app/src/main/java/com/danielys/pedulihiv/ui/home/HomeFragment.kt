@@ -55,11 +55,16 @@ class HomeFragment : Fragment() {
                     binding.tvMotivation.text = this?.text
                 }
             }
+            else{
+                binding.btnKonsul.visibility = View.VISIBLE
+                binding.tvKonsul.visibility = View.VISIBLE
+                binding.rvActivities.visibility = View.GONE
+            }
         }
         homeViewModel.getMotivation()
 
         CoroutineScope(Dispatchers.Main).launch {
-            delay(2000)
+            delay(1)
             binding.tvWelcome.text = "Halo, ${Global.user.name}"
             homeViewModel.getActivities(Global.user.username)
         }
