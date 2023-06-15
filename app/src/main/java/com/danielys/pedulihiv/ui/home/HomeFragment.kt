@@ -1,7 +1,6 @@
 package com.danielys.pedulihiv.ui.home
 
 import android.app.Dialog
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,9 +12,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.danielys.pedulihiv.R
-import com.danielys.pedulihiv.data.response.MotivationrResponse
+import com.danielys.pedulihiv.data.Global
 import com.danielys.pedulihiv.databinding.FragmentHomeBinding
-import com.danielys.pedulihiv.ui.addpost.AddPostActivity
 
 class HomeFragment : Fragment() {
 
@@ -36,6 +34,8 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
+        binding.tvWelcome.text = "Halo ${Global.user?.name}"
+
         homeViewModel.dataMotivation.observe(viewLifecycleOwner){motivationResponse->
             if(motivationResponse.message == "Motivation retrieved"){
                 val dataMotivation = motivationResponse.data
@@ -51,8 +51,7 @@ class HomeFragment : Fragment() {
         homeViewModel.getMotivation()
 
         binding.btnKonsul.setOnClickListener {
-            Toast.makeText(context, "coba pencet", Toast.LENGTH_SHORT).show()
-
+            Toast.makeText(context, Global.user?.name.toString(), Toast.LENGTH_SHORT).show()
             val customDialog = context?.let { it1 -> Dialog(it1) }
             customDialog?.setContentView(R.layout.dialog_consul)
 
@@ -66,7 +65,8 @@ class HomeFragment : Fragment() {
             button?.setOnClickListener {
 //                val intent = Intent(context, AddPostActivity::class.java)
 //                startActivity(intent)
-                customDialog.dismiss()
+
+//                customDialog.dismiss()
             }
         }
         return root

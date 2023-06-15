@@ -1,3 +1,3 @@
 package com.danielys.pedulihiv.data
 
-data class UserData(val username:String, val name:String,val photo:String)
+data class UserData(var username:String, var name:String, var photo:String)

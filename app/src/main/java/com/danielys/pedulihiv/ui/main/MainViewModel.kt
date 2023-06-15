@@ -20,13 +20,13 @@ class MainViewModel(private val userPreferences: UserPreferences) : ViewModel() 
     fun setGlobal() {
         viewModelScope.launch {
             userPreferences.getName().collect {
-                Global.user?.name = it
+                Global.user.name = it
             }
             userPreferences.getUsername().collect {
-                Global.user?.username = it
+                Global.user.username = it
             }
             userPreferences.getPhoto().collect {
-                Global.user?.profile_photo = it
+                Global.user.photo = it
             }
         }
     }
