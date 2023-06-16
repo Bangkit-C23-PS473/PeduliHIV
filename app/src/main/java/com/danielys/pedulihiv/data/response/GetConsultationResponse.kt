@@ -10,6 +10,6 @@ data class ConsultationsItem(
 	val profile_photo: String? = null,
 	val review: Any? = null,
 	val name: String? = null,
-	val consultationsId: Int? = null
+	val consultations_id: Int? = null
 )
 

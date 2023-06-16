@@ -1,6 +1,7 @@
 package com.danielys.pedulihiv.data
 
 import com.danielys.pedulihiv.data.response.ActivitiesResponse
+import com.danielys.pedulihiv.data.response.GetChatResponse
 import com.danielys.pedulihiv.data.response.GetConsultationResponse
 import com.danielys.pedulihiv.data.response.LoginResponse
 import com.danielys.pedulihiv.data.response.MotivationrResponse
@@ -12,6 +13,7 @@ import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface ApiService {
     @FormUrlEncoded
@@ -44,4 +46,10 @@ interface ApiService {
     fun getConsultation(
         @Field("username") username: String
     ): Call<GetConsultationResponse>
+
+//    "getactivitiesuser/showchat?consultations_id={consultations_id}"
+    @GET("showchat")
+    fun getChat(
+        @Query("consultations_id") username: String
+    ): Call<GetChatResponse>
 }

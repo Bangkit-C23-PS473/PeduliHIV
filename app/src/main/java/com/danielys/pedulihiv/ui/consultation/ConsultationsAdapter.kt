@@ -1,27 +1,15 @@
 package com.danielys.pedulihiv.ui.consultation
 
-import android.app.Dialog
 import android.content.Context
-import android.graphics.Color
-import android.graphics.drawable.Drawable
-import android.os.Build
+import android.content.Intent
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
-import androidx.annotation.RequiresApi
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.danielys.pedulihiv.R
 import com.danielys.pedulihiv.data.response.ConsultationsItem
-import com.danielys.pedulihiv.data.response.DataItem
-import com.danielys.pedulihiv.databinding.ItemActivityBinding
 import com.danielys.pedulihiv.databinding.ItemListConsulBinding
-import java.text.SimpleDateFormat
-import java.util.Calendar
+import com.danielys.pedulihiv.ui.chat.ChatActivity
+
 
 class ConsultationsAdapter(private val listActivities: List<ConsultationsItem>, private val context: Context) :
     RecyclerView.Adapter<ConsultationsAdapter.ListViewHolder>() {
@@ -38,7 +26,9 @@ class ConsultationsAdapter(private val listActivities: List<ConsultationsItem>, 
             .into(viewHolder.binding.profileImage)
         viewHolder.binding.tvNameDoctor.text = listActivities[position].name
         viewHolder.itemView.setOnClickListener {
-
+            val intent = Intent(context, ChatActivity::class.java)
+            intent.putExtra("KEYIDCONSUL",listActivities[position].consultations_id.toString())
+            context.startActivity(intent)
         }
     }
 
@@ -46,5 +36,7 @@ class ConsultationsAdapter(private val listActivities: List<ConsultationsItem>, 
 
 
     class ListViewHolder(var binding: ItemListConsulBinding) : RecyclerView.ViewHolder(binding.root)
-
+    companion object{
+        const val KEYIDCONSUL = "id_consul"
+    }
 }

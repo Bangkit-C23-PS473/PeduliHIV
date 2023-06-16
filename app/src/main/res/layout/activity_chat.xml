@@ -7,7 +7,7 @@
     tools:context=".ui.chat.ChatActivity">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/iv_photo_profile"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginStart="16dp"
@@ -22,8 +22,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:text="Dr Test S.pdgk"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_photo_profile"
+        app:layout_constraintStart_toEndOf="@+id/iv_photo_profile"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -36,7 +36,7 @@
         app:layout_constraintBottom_toTopOf="@+id/et_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/iv_photo_profile"
         tools:listitem="@layout/item_chat" />
 
     <EditText

@@ -11,7 +11,6 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.danielys.pedulihiv.R
@@ -72,7 +71,7 @@ class HomeFragment : Fragment() {
         homeViewModel.dataActivities.observe(viewLifecycleOwner) { activitiesResponse ->
             val listActivities = activitiesResponse.data
             if (!listActivities.isNullOrEmpty()) {
-                setStoriesData(listActivities as List<DataItem>)
+                setActivitiesData(listActivities as List<DataItem>)
             }
 
         }
@@ -99,10 +98,10 @@ class HomeFragment : Fragment() {
         return root
     }
 
-    private fun setStoriesData(stories: List<DataItem>) {
+    private fun setActivitiesData(activities: List<DataItem>) {
         val layoutManager = LinearLayoutManager(requireContext())
         binding.rvActivities.layoutManager = layoutManager
-        val adapter = ActivitiesAdapter(stories, requireContext())
+        val adapter = ActivitiesAdapter(activities, requireContext())
         binding.rvActivities.adapter = adapter
     }
 
