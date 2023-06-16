@@ -1,24 +1,24 @@
 package com.danielys.pedulihiv.ui.home
 
-import android.app.Activity
 import android.app.Dialog
 import android.content.Context
-import android.content.Intent
+import android.graphics.Color
 import android.graphics.drawable.Drawable
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.app.ActivityOptionsCompat
+import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
-import androidx.core.graphics.drawable.toDrawable
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.danielys.pedulihiv.R
 import com.danielys.pedulihiv.data.response.DataItem
 import com.danielys.pedulihiv.databinding.ItemActivityBinding
-import com.danielys.pedulihiv.ui.addpost.AddPostActivity
+import java.text.SimpleDateFormat
+import java.time.LocalTime
+import java.util.Calendar
 
 class ActivitiesAdapter(private val listActivities: List<DataItem>, private val context: Context) :
     RecyclerView.Adapter<ActivitiesAdapter.ListViewHolder>() {
@@ -29,6 +29,7 @@ class ActivitiesAdapter(private val listActivities: List<DataItem>, private val 
         return ListViewHolder(binding)
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(viewHolder: ListViewHolder, position: Int) {
         var vector:Drawable = ContextCompat.getDrawable(context, R.drawable.ica_clock)!!
         when(listActivities[position].logo)
@@ -42,6 +43,21 @@ class ActivitiesAdapter(private val listActivities: List<DataItem>, private val 
         viewHolder.binding.imgActivity.setImageDrawable(vector)
         viewHolder.binding.tvNameActivity.text = listActivities[position].name
         viewHolder.binding.tvTime.text = listActivities[position].time?.substring(0, 8 - 3)
+
+        val calendar = Calendar.getInstance()
+        val currentTime = calendar.time
+        val dateFormat = SimpleDateFormat("HHmm")
+        val formattedTime: String = dateFormat.format(currentTime)
+        val timeSchedule = listActivities[position].time?.substring(0, 8 - 3)
+        val timeScheduleFormatted = timeSchedule?.replace(":","")
+
+        if(timeScheduleFormatted?.toInt()!! >formattedTime.toInt())
+        {
+            viewHolder.binding.cardView2.setCardBackgroundColor(Color.GREEN)
+        }
+        else{
+            viewHolder.binding.cardView2.setCardBackgroundColor(Color.YELLOW)
+        }
 
         viewHolder.itemView.setOnClickListener {
             val customDialog = context?.let { it1 -> Dialog(it1) }
