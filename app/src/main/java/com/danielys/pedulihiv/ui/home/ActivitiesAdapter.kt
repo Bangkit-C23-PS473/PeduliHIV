@@ -6,6 +6,7 @@ import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.os.Build
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
@@ -31,13 +32,12 @@ class ActivitiesAdapter(private val listActivities: List<DataItem>, private val 
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(viewHolder: ListViewHolder, position: Int) {
-        var vector:Drawable = ContextCompat.getDrawable(context, R.drawable.ica_clock)!!
-        when(listActivities[position].logo)
-        {
-            "clock"->vector = ContextCompat.getDrawable(context, R.drawable.ica_clock)!!
-            "sport"->vector = ContextCompat.getDrawable(context, R.drawable.ica_sport)!!
-            "eat"->vector = ContextCompat.getDrawable(context, R.drawable.ica_eat)!!
-            "medicine"->vector = ContextCompat.getDrawable(context, R.drawable.ica_medicine)!!
+        var vector: Drawable = ContextCompat.getDrawable(context, R.drawable.ica_clock)!!
+        when (listActivities[position].logo) {
+            "clock" -> vector = ContextCompat.getDrawable(context, R.drawable.ica_clock)!!
+            "sport" -> vector = ContextCompat.getDrawable(context, R.drawable.ica_sport)!!
+            "eat" -> vector = ContextCompat.getDrawable(context, R.drawable.ica_eat)!!
+            "medicine" -> vector = ContextCompat.getDrawable(context, R.drawable.ica_medicine)!!
         }
 
         viewHolder.binding.imgActivity.setImageDrawable(vector)
@@ -49,13 +49,11 @@ class ActivitiesAdapter(private val listActivities: List<DataItem>, private val 
         val dateFormat = SimpleDateFormat("HHmm")
         val formattedTime: String = dateFormat.format(currentTime)
         val timeSchedule = listActivities[position].time?.substring(0, 8 - 3)
-        val timeScheduleFormatted = timeSchedule?.replace(":","")
+        val timeScheduleFormatted = timeSchedule?.replace(":", "")
 
-        if(timeScheduleFormatted?.toInt()!! >formattedTime.toInt())
-        {
+        if (timeScheduleFormatted?.toInt()!! > formattedTime.toInt()) {
             viewHolder.binding.cardView2.setCardBackgroundColor(Color.GREEN)
-        }
-        else{
+        } else {
             viewHolder.binding.cardView2.setCardBackgroundColor(Color.YELLOW)
         }
 
@@ -70,8 +68,10 @@ class ActivitiesAdapter(private val listActivities: List<DataItem>, private val 
             val desc = customDialog?.findViewById<TextView>(R.id.tv_desc_dialogact)
             val button = customDialog?.findViewById<Button>(R.id.btn_ok_dialogact)
 
-            if (listActivities[position].description.toString()!="null"){
+            if (listActivities[position].description.toString() != "null") {
                 desc?.text = listActivities[position].description.toString()
+            } else {
+                desc?.visibility = View.GONE
             }
             nameAct?.text = listActivities[position].name
             imgAct?.setImageDrawable(vector)

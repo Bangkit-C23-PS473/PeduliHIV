@@ -102,8 +102,6 @@ class HomeFragment : Fragment() {
     private fun setStoriesData(stories: List<DataItem>) {
         val layoutManager = LinearLayoutManager(requireContext())
         binding.rvActivities.layoutManager = layoutManager
-        val itemDecoration = DividerItemDecoration(requireContext(), layoutManager.orientation)
-        binding.rvActivities.addItemDecoration(itemDecoration)
         val adapter = ActivitiesAdapter(stories, requireContext())
         binding.rvActivities.adapter = adapter
     }
