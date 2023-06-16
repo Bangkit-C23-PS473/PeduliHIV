@@ -30,7 +30,6 @@ class ActivitiesAdapter(private val listActivities: List<DataItem>, private val 
         return ListViewHolder(binding)
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(viewHolder: ListViewHolder, position: Int) {
         var vector: Drawable = ContextCompat.getDrawable(context, R.drawable.ica_clock)!!
         when (listActivities[position].logo) {
