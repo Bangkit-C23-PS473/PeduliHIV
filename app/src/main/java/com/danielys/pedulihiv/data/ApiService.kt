@@ -47,7 +47,6 @@ interface ApiService {
         @Field("username") username: String
     ): Call<GetConsultationResponse>
 
-//    "getactivitiesuser/showchat?consultations_id={consultations_id}"
     @GET("showchat")
     fun getChat(
         @Query("consultations_id") username: String

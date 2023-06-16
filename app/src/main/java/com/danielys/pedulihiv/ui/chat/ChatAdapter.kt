@@ -46,7 +46,7 @@ class ChatAdapter(
         }
         viewHolder.binding.tvName.text = listChat[position].sender_username
         viewHolder.binding.tvChat.text = listChat[position].text
-        viewHolder.binding.tvDate.text = listChat[position].time
+        viewHolder.binding.tvDate.text = Global.dateFormatter(listChat[position].time.toString())
     }
 
     override fun getItemCount() = listChat.size

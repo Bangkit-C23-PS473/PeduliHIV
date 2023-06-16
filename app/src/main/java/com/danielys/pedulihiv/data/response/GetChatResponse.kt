@@ -17,6 +17,7 @@ data class DataItemChat(
 
 data class Doctor(
 	val name: String? = null,
-	val username: String? = null
+	val username: String? = null,
+	val photo: String? = null
 )
 
