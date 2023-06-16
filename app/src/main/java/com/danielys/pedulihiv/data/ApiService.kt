@@ -1,6 +1,7 @@
 package com.danielys.pedulihiv.data
 
 import com.danielys.pedulihiv.data.response.ActivitiesResponse
+import com.danielys.pedulihiv.data.response.GetConsultationResponse
 import com.danielys.pedulihiv.data.response.LoginResponse
 import com.danielys.pedulihiv.data.response.MotivationrResponse
 import com.danielys.pedulihiv.data.response.RegisterResponse
@@ -37,4 +38,10 @@ interface ApiService {
     fun getActivities(
         @Path("username") username: String
     ): Call<ActivitiesResponse>
+
+    @FormUrlEncoded
+    @POST("getuserconsultations")
+    fun getConsultation(
+        @Field("username") username: String
+    ): Call<GetConsultationResponse>
 }

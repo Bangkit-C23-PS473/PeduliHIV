@@ -7,31 +7,48 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.danielys.pedulihiv.data.response.ConsultationsItem
+import com.danielys.pedulihiv.data.response.DataItem
 import com.danielys.pedulihiv.databinding.FragmentConsultationBinding
+import com.danielys.pedulihiv.ui.home.ActivitiesAdapter
 
 class ConsultationFragment : Fragment() {
 
-private var _binding: FragmentConsultationBinding? = null
-  // This property is only valid between onCreateView and
-  // onDestroyView.
-  private val binding get() = _binding!!
+    private var _binding: FragmentConsultationBinding? = null
 
-  override fun onCreateView(
-    inflater: LayoutInflater,
-    container: ViewGroup?,
-    savedInstanceState: Bundle?
-  ): View {
-    val dashboardViewModel =
+    // This property is only valid between onCreateView and
+    // onDestroyView.
+    private val binding get() = _binding!!
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        val consultationViewModel =
             ViewModelProvider(this).get(ConsultationViewModel::class.java)
 
-    _binding = FragmentConsultationBinding.inflate(inflater, container, false)
-    val root: View = binding.root
+        _binding = FragmentConsultationBinding.inflate(inflater, container, false)
+        val root: View = binding.root
 
+        consultationViewModel.dataConsultation.observe(requireActivity()){consultationResponse->
+            if(consultationResponse.message == "User's consultations retrieved successfully" && consultationResponse.consultations!!.isNotEmpty()){
+                setConsultationData(consultationResponse.consultations as List<ConsultationsItem>)
+            }
+        }
+        consultationViewModel.getConsultation()
+        return root
+    }
 
-    return root
-  }
+    private fun setConsultationData(consults: List<ConsultationsItem>) {
+        val layoutManager = LinearLayoutManager(requireContext())
+        binding.rvConsul.layoutManager = layoutManager
+        val adapter = ConsultationsAdapter(consults, requireContext())
+        binding.rvConsul.adapter = adapter
+    }
 
-override fun onDestroyView() {
+    override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
