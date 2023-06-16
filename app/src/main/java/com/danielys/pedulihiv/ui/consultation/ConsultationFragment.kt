@@ -1,5 +1,6 @@
 package com.danielys.pedulihiv.ui.consultation
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,7 @@ import com.danielys.pedulihiv.data.response.ConsultationsItem
 import com.danielys.pedulihiv.data.response.DataItem
 import com.danielys.pedulihiv.databinding.FragmentConsultationBinding
 import com.danielys.pedulihiv.ui.home.ActivitiesAdapter
+import com.danielys.pedulihiv.ui.listdoctor.ListDoctorActivity
 
 class ConsultationFragment : Fragment() {
 
@@ -38,6 +40,12 @@ class ConsultationFragment : Fragment() {
             }
         }
         consultationViewModel.getConsultation()
+
+        binding.btnAdd.setOnClickListener {
+            val intent = Intent(requireContext(),ListDoctorActivity::class.java)
+            context?.startActivity(intent)
+        }
+
         return root
     }
 

@@ -3,7 +3,9 @@ package com.danielys.pedulihiv.data
 import com.danielys.pedulihiv.data.response.ActivitiesResponse
 import com.danielys.pedulihiv.data.response.GetChatResponse
 import com.danielys.pedulihiv.data.response.GetConsultationResponse
+import com.danielys.pedulihiv.data.response.GetDoctorResponse
 import com.danielys.pedulihiv.data.response.LoginResponse
+import com.danielys.pedulihiv.data.response.MakeConsulResponse
 import com.danielys.pedulihiv.data.response.MotivationrResponse
 import com.danielys.pedulihiv.data.response.RegisterChatResponse
 import okhttp3.MultipartBody
@@ -37,7 +39,7 @@ interface ApiService {
     ): Call<RegisterChatResponse>
 
     @GET("getmotivation")
-    fun getMotivation():Call<MotivationrResponse>
+    fun getMotivation(): Call<MotivationrResponse>
 
     @GET("getactivitiesuser/{username}")
     fun getActivities(
@@ -61,10 +63,10 @@ interface ApiService {
         @Part photo: MultipartBody.Part,
         @Part("consultations_id") consultations_id: RequestBody,
         @Part("sender_username") sender_username: RequestBody,
-        @Part("text") text : RequestBody
+        @Part("text") text: RequestBody
     ): Call<RegisterChatResponse>
 
-//    @Multipart
+    //    @Multipart
 //    @POST("insertchat")
 //    fun sendChat(
 //        @Part photo: MultipartBody.Part,
@@ -77,6 +79,16 @@ interface ApiService {
     fun sendChat(
         @Field("consultations_id") consultations_id: String,
         @Field("sender_username") sender_username: String,
-        @Field("text") text : String
+        @Field("text") text: String
     ): Call<RegisterChatResponse>
+
+    @GET("getdoctors")
+    fun getDoctor(): Call<GetDoctorResponse>
+
+    @FormUrlEncoded
+    @POST("makeconsul")
+    fun makeConsul(
+        @Field("users_username") users_username: String,
+        @Field("doctors_username") doctors_username: String
+    ): Call<MakeConsulResponse>
 }
