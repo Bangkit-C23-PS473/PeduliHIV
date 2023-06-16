@@ -23,10 +23,10 @@ class ChatActivity : AppCompatActivity() {
 
         chatViewModel.dataChat.observe(this){chatResponse->
             if(chatResponse.message=="success"){
-                setActivitiesData(chatResponse.data as List<DataItemChat>,"https://storage.googleapis.com/capstone-bucket-2023/userdoctor.jpg")
+                setActivitiesData(chatResponse.data as List<DataItemChat>,chatResponse.doctor?.photo ?:"https://storage.googleapis.com/capstone-bucket-2023/userdoctor.jpg")
             }
             Glide.with(this)
-                .load("https://storage.googleapis.com/capstone-bucket-2023/userdoctor.jpg")
+                .load(chatResponse.doctor?.photo ?:"https://storage.googleapis.com/capstone-bucket-2023/userdoctor.jpg")
                 .into(binding.ivPhotoProfile)
             binding.tvName.text = chatResponse.doctor?.name
         }
