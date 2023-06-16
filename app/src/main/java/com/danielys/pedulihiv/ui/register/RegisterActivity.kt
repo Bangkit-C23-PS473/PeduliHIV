@@ -4,8 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
-import com.danielys.pedulihiv.R
-import com.danielys.pedulihiv.data.response.RegisterResponse
 import com.danielys.pedulihiv.databinding.ActivityRegisterBinding
 
 class RegisterActivity : AppCompatActivity() {

@@ -1,6 +1,6 @@
 package com.danielys.pedulihiv.data.response
 
-data class RegisterResponse(
+data class RegisterChatResponse(
 	val message: String? = null
 )
 
