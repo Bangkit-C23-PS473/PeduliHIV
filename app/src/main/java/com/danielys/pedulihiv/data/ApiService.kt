@@ -8,6 +8,7 @@ import com.danielys.pedulihiv.data.response.GetPostResponse
 import com.danielys.pedulihiv.data.response.LoginResponse
 import com.danielys.pedulihiv.data.response.MakeConsulResponse
 import com.danielys.pedulihiv.data.response.MotivationrResponse
+import com.danielys.pedulihiv.data.response.ReadPostResponse
 import com.danielys.pedulihiv.data.response.RegisterChatResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -97,4 +98,10 @@ interface ApiService {
     fun getPost(
         @Query("users_username") username: String
     ): Call<GetPostResponse>
+
+    @GET("readpost")
+    fun readPost(
+        @Query("posts_id") posts_id: String,
+        @Query("users_username") username: String
+    ): Call<ReadPostResponse>
 }

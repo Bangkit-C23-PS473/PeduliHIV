@@ -54,16 +54,11 @@ class HomeFragment : Fragment() {
                     binding.tvMotivation.text = this?.text
                 }
             }
-            else{
-                binding.btnKonsul.visibility = View.VISIBLE
-                binding.tvKonsul.visibility = View.VISIBLE
-                binding.rvActivities.visibility = View.GONE
-            }
         }
         homeViewModel.getMotivation()
 
         CoroutineScope(Dispatchers.Main).launch {
-            delay(1)
+            delay(1000)
             binding.tvWelcome.text = "Halo, ${Global.user.name}"
             homeViewModel.getActivities(Global.user.username)
         }
@@ -73,7 +68,11 @@ class HomeFragment : Fragment() {
             if (!listActivities.isNullOrEmpty()) {
                 setActivitiesData(listActivities as List<DataItem>)
             }
-
+            else{
+                binding.btnKonsul.visibility = View.VISIBLE
+                binding.tvKonsul.visibility = View.VISIBLE
+                binding.rvActivities.visibility = View.GONE
+            }
         }
 
         binding.btnKonsul.setOnClickListener {
