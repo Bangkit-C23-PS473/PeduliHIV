@@ -37,7 +37,7 @@ class ChatActivity : AppCompatActivity() {
 
         chatViewModel.dataChat.observe(this){chatResponse->
             if(chatResponse.message=="success"){
-                setActivitiesData(chatResponse.data as List<DataItemChat>,chatResponse.doctor?.photo ?:"https://storage.googleapis.com/capstone-bucket-2023/userdoctor.jpg")
+                setChatData(chatResponse.data as List<DataItemChat>,chatResponse.doctor?.photo ?:"https://storage.googleapis.com/capstone-bucket-2023/userdoctor.jpg")
             }
             Glide.with(this)
                 .load(chatResponse.doctor?.photo ?:"https://storage.googleapis.com/capstone-bucket-2023/userdoctor.jpg")
@@ -76,7 +76,7 @@ class ChatActivity : AppCompatActivity() {
         }
     }
 
-    private fun setActivitiesData(activities: List<DataItemChat>, doctorImg: String) {
+    private fun setChatData(activities: List<DataItemChat>, doctorImg: String) {
         val layoutManager = LinearLayoutManager(this)
         binding.rvChat.layoutManager = layoutManager
         val adapter = ChatAdapter(activities, this,doctorImg)

@@ -4,6 +4,7 @@ import com.danielys.pedulihiv.data.response.ActivitiesResponse
 import com.danielys.pedulihiv.data.response.GetChatResponse
 import com.danielys.pedulihiv.data.response.GetConsultationResponse
 import com.danielys.pedulihiv.data.response.GetDoctorResponse
+import com.danielys.pedulihiv.data.response.GetPostResponse
 import com.danielys.pedulihiv.data.response.LoginResponse
 import com.danielys.pedulihiv.data.response.MakeConsulResponse
 import com.danielys.pedulihiv.data.response.MotivationrResponse
@@ -91,4 +92,9 @@ interface ApiService {
         @Field("users_username") users_username: String,
         @Field("doctors_username") doctors_username: String
     ): Call<MakeConsulResponse>
+
+    @GET("getpost")
+    fun getPost(
+        @Query("users_username") username: String
+    ): Call<GetPostResponse>
 }
